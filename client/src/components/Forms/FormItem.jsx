@@ -55,7 +55,7 @@ class ItemForm extends Component {
     // console.log(this.state)
     return (
       <div className="ItemForm-container">
-        <form className="form" onChange={this.handleChange} >
+        <form className="form" onChange={this.handleChange} onSubmit={this.handleSubmit}>
           <h2 className="title">Add Item</h2>
 
           <div className="form-group">
