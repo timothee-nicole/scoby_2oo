@@ -10,7 +10,7 @@ class ItemForm extends Component {
     image:"",
     adress:"",
     location:"",
-    description: "",
+    description:"",
     contact: ""
   };
 
