@@ -9,6 +9,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const mongoose = require("mongoose");
 const app = express();
+const cors = require('cors')
 
 /*
  * Middlewares
@@ -20,6 +21,12 @@ app.use(express.urlencoded({ extended: false })); // Access data sent as urlEnco
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+    credentials: true,
+  })
+)
 app.use(
   session({
     store: new MongoStore({ mongooseConnection: mongoose.connection }),

@@ -5,6 +5,7 @@ const itemSchema = new Schema(
   {
     name: String,
     description: String,
+    contact: String,
     image: {
       type: String,
       default:
