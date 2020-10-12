@@ -17,8 +17,9 @@ export default class Mapbox extends Component {
     width: '100vw'
   }}
 >
+
   <Layer type="symbol" id="marker" layout={{ 'icon-image': 'marker-15' }}>
-    <Feature coordinates={[-0.481747846041145, 51.3233379650232]} />
+    <Feature coordinates={[-48.866, 2.33]} />
   </Layer>
 </Map>
         )
