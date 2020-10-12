@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import LocationAutoComplete from "../LocationAutoComplete";
 import "../../styles/form.css";
+import apiHandler from "../../api/apiHandler.js"
 
 class ItemForm extends Component {
   state = {
@@ -19,14 +20,21 @@ class ItemForm extends Component {
     let key = e.target.name
     let value = e.target.value
     console.log(this.state)
-    // this.setState({
-    //     [key]: value
-    // });
+    this.setState({
+        [key]: value
+    });
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Wax On Wax Off");
+  
+    apiHandler.createOne("/api/items/", this.state)
+    .then((apiRes) => {
+      console.log(apiRes);
+    })
+    .catch((apiError) => {
+      console.log(apiError);
+    });
 
     // In order to send back the data to the client, since there is an input type file you have to send the
     // data as formdata.
@@ -100,8 +108,9 @@ class ItemForm extends Component {
             <textarea
               id="description"
               className="text-area"
-              placeholder="Tell us something about this item"description
-              name=""
+              type="text"
+              placeholder="Tell us something about this item"
+              name="description"
             ></textarea>
           </div>
 
@@ -119,10 +128,10 @@ class ItemForm extends Component {
               How do you want to be reached?
             </label>
             <div>
-              <input type="radio" name="contact" value="EMAILTOCONTEXT"/>
+              <input type="radio" name="contact" value="userEmailContext"/> 
               user email
             </div>
-            <input type="radio" name="contact" value="PHONETOCONTEXT"/>
+            <input type="radio" name="contact" value="userPhoneContext"/>
             contact phone number
           </div>
 
