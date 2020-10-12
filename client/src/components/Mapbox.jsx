@@ -1,5 +1,4 @@
 import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
-
 import React, { Component } from 'react'
 
 const Map = ReactMapboxGl({
