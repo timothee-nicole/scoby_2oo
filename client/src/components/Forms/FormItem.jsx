@@ -3,11 +3,25 @@ import LocationAutoComplete from "../LocationAutoComplete";
 import "../../styles/form.css";
 
 class ItemForm extends Component {
-  state = {};
+  state = {
+    name: "",
+    category: "",
+    quantity: 0,
+    image:"",
+    adress:"",
+    location:"",
+    description: "",
+    contact: ""
+  };
 
-  handleChange(event) {
-    console.log("Wax On Wax Off");
-    this.setState({});
+  handleChange = (e) => {
+    console.log(e.target.name, e.target.value);
+    let key = e.target.name
+    let value = e.target.value
+    console.log(this.state)
+    // this.setState({
+    //     [key]: value
+    // });
   }
 
   handleSubmit = (event) => {
@@ -30,6 +44,7 @@ class ItemForm extends Component {
   };
 
   render() {
+    // console.log(this.state)
     return (
       <div className="ItemForm-container">
         <form className="form" onChange={this.handleChange}>
@@ -44,6 +59,7 @@ class ItemForm extends Component {
               className="input"
               type="text"
               placeholder="What are you giving away ?"
+              name="name"
             />
           </div>
 
@@ -52,7 +68,7 @@ class ItemForm extends Component {
               Category
             </label>
 
-            <select id="category" defaultValue="-1">
+            <select id="category" defaultValue="-1" name="category">
               <option value="-1" disabled>
                 Select a category
               </option>
@@ -67,7 +83,7 @@ class ItemForm extends Component {
             <label className="label" htmlFor="quantity">
               Quantity
             </label>
-            <input className="input" id="quantity" type="number" />
+            <input className="input" id="quantity" type="number" name="quantity" />
           </div>
 
           <div className="form-group">
@@ -84,7 +100,8 @@ class ItemForm extends Component {
             <textarea
               id="description"
               className="text-area"
-              placeholder="Tell us something about this item"
+              placeholder="Tell us something about this item"description
+              name=""
             ></textarea>
           </div>
 
@@ -92,7 +109,7 @@ class ItemForm extends Component {
             <label className="custom-upload label" htmlFor="image">
               Upload image
             </label>
-            <input className="input" id="image" type="file" />
+            <input className="input" id="image" type="file" name="image"/>
           </div>
 
           <h2>Contact information</h2>
@@ -102,10 +119,10 @@ class ItemForm extends Component {
               How do you want to be reached?
             </label>
             <div>
-              <input type="radio" />
+              <input type="radio" name="contact" value="EMAILTOCONTEXT"/>
               user email
             </div>
-            <input type="radio" />
+            <input type="radio" name="contact" value="PHONETOCONTEXT"/>
             contact phone number
           </div>
 

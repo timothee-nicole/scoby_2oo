@@ -50,4 +50,33 @@ export default {
       .then((res) => res.data)
       .catch(errorHandler);
   },
+
+  getOneItem(id) {
+    return service
+      .get("/api/items/" + id)
+      .then((apiRes) => apiRes.data)
+      .catch(errorHandler)
+  },
+
+  createOne(endPoint, data) {
+    return service
+      .post(endPoint, data)
+      .then((apiRes) => apiRes.data)
+      .catch(errorHandler)
+  },
+
+  updateOne(endPoint, data) {
+    return service
+      .patch(endPoint, data)
+      .then((apiRes) => apiRes.data)
+      .catch(errorHandler)
+  },
+
+  deleteOne(endPoint) {
+    return service
+      .delete(endPoint)
+      .then((apiRes) => apiRes.data)
+      .catch(errorHandler)
+  }
+
 };
