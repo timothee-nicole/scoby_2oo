@@ -1,6 +1,5 @@
 import React from "react";
 import Mapbox from "../components/Mapbox.jsx";
-import Map from "../components/Mapbox.jsx"
 
 const Home = (props) => {
   // Implement react map box here.
