@@ -59,11 +59,13 @@ export default {
   },
 
   createOne(endPoint, data) {
+    console.log("dawg")
     return service
       .post(endPoint, data)
       .then((apiRes) => apiRes.data)
       .catch(errorHandler)
   },
+
 
   updateOne(endPoint, data) {
     return service
