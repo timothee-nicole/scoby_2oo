@@ -3,29 +3,75 @@ import { Link } from "react-router-dom";
 import { withUser } from "../components/Auth/withUser";
 import "../styles/Profile.css";
 import "../styles/CardItem.css";
+import apiHandler from "../api/apiHandler";
 
 class Profile extends Component {
+  state = {
+    phoneNumber: "",
+  };
+
+  handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+
+    this.setState({
+      [name]: value,
+    });
+  };
+
+  componentDidMount() {
+    apiHandler
+      .getUserInfo("/profile")
+      .then((apiRes) => {
+        this.setState({
+          phoneNumber: apiRes.phoneNumber,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  componentDidUpdate() {
+    console.log("lets do this dawg");
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+
+    apiHandler
+      .updateOne("/profile", this.state)
+      .then((apiRes) => {
+        this.setState({
+          phoneNumber: apiRes.phoneNumber,
+        });
+      })
+      .catch((apiErr) => {
+        console.log(apiErr);
+      });
+  };
+
   render() {
     const { authContext } = this.props;
     const { user } = authContext;
-
+console.log("this is the user:", user)
     return (
       <div style={{ padding: "100px", fontSize: "1.25rem" }}>
-        <h2 style={{ fontSize: "1.5rem", marginBottom: "10px" }}>
+        {/* <h2 style={{ fontSize: "1.5rem", marginBottom: "10px" }}>
           This is profile, it's protected !
         </h2>
         <p>
           Checkout the<b>ProtectedRoute</b> component in
           <code>./components/ProtectRoute.jsx</code>
-        </p>
-        <a
+        </p> */}
+        {/* <a
           style={{ color: "dodgerblue", fontWeight: "bold" }}
           target="_blank"
           rel="noopener noreferrer"
           href="https://reacttraining.com/react-router/web/example/auth-workflow"
         >
           React router dom Demo of a protected route
-        </a>
+        </a> */}
 
         <section className="Profile">
           <div className="user-image round-image">
@@ -39,26 +85,33 @@ class Profile extends Component {
               Edit profile
             </Link>
           </div>
+          {console.log(user.phoneNumber)}
+          {user.phoneNumber ? (
+            <div className="user-contact">
+              <h4>{user.phoneNumber}</h4>
+            </div>
+          ) : (
+            <div className="user-contact">
+              <h4>Add a phone number</h4>
 
-          <div className="user-contact">
-            <h4>Add a phone number</h4>
-
-            <form className="form">
-              <div className="form-group">
-                <label className="label" htmlFor="phoneNumber">
-                  Phone number
-                </label>
-                <input
-                  className="input"
-                  id="phoneNumber"
-                  type="text"
-                  name="phoneNumber"
-                  placeholder="Add phone number"
-                />
-              </div>
-              <button className="form__button">Add phone number</button>
-            </form>
-          </div>
+              <form className="form" onSubmit={this.handleSubmit}>
+                <div className="form-group">
+                  <label className="label" htmlFor="phoneNumber">
+                    Phone number
+                  </label>
+                  <input
+                    className="input"
+                    id="phoneNumber"
+                    type="text"
+                    name="phoneNumber"
+                    placeholder="Add phone number"
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <button className="form__button">Add phone number</button>
+              </form>
+            </div>
+          )}
 
           {/* Break whatever is belo  */}
           <div className="CardItem">
