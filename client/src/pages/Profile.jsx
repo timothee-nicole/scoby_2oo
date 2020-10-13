@@ -11,7 +11,7 @@ class Profile extends Component {
 
     return (
       <div style={{ padding: "100px", fontSize: "1.25rem" }}>
-        <h2 style={{ fontSize: "1.5rem", marginBottom: "10px" }}>
+        {/* <h2 style={{ fontSize: "1.5rem", marginBottom: "10px" }}>
           This is profile, it's protected !
         </h2>
         <p>
@@ -25,7 +25,7 @@ class Profile extends Component {
           href="https://reacttraining.com/react-router/web/example/auth-workflow"
         >
           React router dom Demo of a protected route
-        </a>
+        </a> */}
 
         <section className="Profile">
           <div className="user-image round-image">

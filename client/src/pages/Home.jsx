@@ -8,7 +8,6 @@ const Home = (props) => {
     <div>
       <h1>MAPBOX MAP HERE </h1>
       <Mapbox />
-      <AllItems />
     </div>
   );
 };

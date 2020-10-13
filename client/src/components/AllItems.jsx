@@ -14,7 +14,7 @@ class AllItems extends Component {
            zoom: 16
          },
         itemsLocation: [],
-        ItemsLatLong: [],
+        // ItemsLatLong: [],
       };
      
       componentDidMount = () => {
@@ -29,18 +29,18 @@ class AllItems extends Component {
       };
 
       
-      setItemsLocation = () => {
-        let newArr = []
-        this.state.itemsLocation.map((obj) => {
-            newArr= [ {lat: obj.location.coordinates[0] , long: obj.location.coordinates[1], }]
+      // setItemsLocation = () => {
+      //   let newArr = []
+      //   this.state.itemsLocation.map((obj) => {
+      //       newArr= [ {lat: obj.location.coordinates[0] , long: obj.location.coordinates[1], }]
 
-        }) 
-        this.setState({
+      //   }) 
+      //   this.setState({
 
-          ItemsLongLat: newArr
-        })
+      //     ItemsLongLat: newArr
+      //   })
          
-      }
+      // }
       
     
     
@@ -51,13 +51,23 @@ class AllItems extends Component {
       // };
 
     render() {
-
       // this.setItemsLocation
-      console.log(this.state.ItemsLongLat)
+      console.log(this.state.itemsLocation[0] && this.state.itemsLocation[3])
+    
         return (
-            <div>
-               
-            </div>
+            <>
+               {this.state.itemsLocation[0] && 
+                  this.state.itemsLocation.map((obj) => (
+                  <React.Fragment key={obj.name}>
+                      <Marker
+                      latitude={obj.location.coordinates[0]}
+                      longitude={obj.location.coordinates[1]}
+                      >{obj.name}</Marker>
+                    </React.Fragment>
+                  
+                  ))
+               }
+            </>
         )
     }
   }
