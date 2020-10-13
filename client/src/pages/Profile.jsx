@@ -19,19 +19,6 @@ class Profile extends Component {
     });
   };
 
-  componentDidMount() {
-    apiHandler
-      .getUserInfo("/profile")
-      .then((apiRes) => {
-        this.setState({
-          phoneNumber: apiRes.phoneNumber,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
   componentDidUpdate() {
     console.log("lets do this dawg");
   }
@@ -45,6 +32,7 @@ class Profile extends Component {
         this.setState({
           phoneNumber: apiRes.phoneNumber,
         });
+        this.props.authContext.setUser(apiRes);
       })
       .catch((apiErr) => {
         console.log(apiErr);
@@ -55,7 +43,9 @@ class Profile extends Component {
     const { authContext } = this.props;
     const { user } = authContext;
 console.log("this is the user:", user)
+
     return (
+      
       <div style={{ padding: "100px", fontSize: "1.25rem" }}>
         {/* <h2 style={{ fontSize: "1.5rem", marginBottom: "10px" }}>
           This is profile, it's protected !
@@ -85,6 +75,7 @@ console.log("this is the user:", user)
               Edit profile
             </Link>
           </div>
+          {console.log("user",user)}
           {console.log(user.phoneNumber)}
           {user.phoneNumber ? (
             <div className="user-contact">
