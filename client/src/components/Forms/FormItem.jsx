@@ -10,7 +10,11 @@ class ItemForm extends Component {
     quantity: 0,
     image:"",
     adress:"",
-    location:"",
+    location: {
+      type: "",
+      coordinates: 0,
+      formattedAddress: "",
+    },
     description:"",
     contact: "",
     userPhone: "",
@@ -57,11 +61,19 @@ class ItemForm extends Component {
     // Nested object into formData by user Vladimir "Vladi vlad" Novopashin @stackoverflow : ) => https://stackoverflow.com/a/42483509
   };
 
-  handlePlace = (place) => {
+  handlePlace = (position) => {
+    this.setState({
+      location: {
+      type: position.geometry.type,
+      coordinates: position.geometry.coordinates,
+      formattedAddress: position.place_name
+      },
+    address: position.place_name,
+    })
     // This handle is passed as a callback to the autocomplete component.
     // Take a look at the data and see what you can get from it.
     // Look at the item model to know what you should retrieve and set as state.
-    console.log(place);
+    console.log(position.place_name);
   };
 
   render() {

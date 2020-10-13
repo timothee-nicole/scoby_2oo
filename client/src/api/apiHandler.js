@@ -82,7 +82,7 @@ export default {
   },
 
   getUserInfo(endPoint) {
-    console.log("toto")
+    // console.log("toto")
     return service
       .get(endPoint)
       .then((apiRes) => apiRes.data)
