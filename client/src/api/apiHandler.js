@@ -79,6 +79,14 @@ export default {
       .delete(endPoint)
       .then((apiRes) => apiRes.data)
       .catch(errorHandler)
-  }
+  },
+
+  getUserInfo(endPoint) {
+    console.log("toto")
+    return service
+      .get(endPoint)
+      .then((apiRes) => apiRes.data)
+      .catch(errorHandler)
+  },
 
 };

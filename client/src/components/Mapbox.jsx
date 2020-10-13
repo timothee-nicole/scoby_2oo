@@ -1,6 +1,6 @@
 import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
 import React, { Component } from "react";
-import apiHandler from "../api/apiHandler.js";
+
 
 const Map = ReactMapboxGl({
   accessToken:

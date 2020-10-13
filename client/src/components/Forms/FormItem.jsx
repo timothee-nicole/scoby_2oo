@@ -12,7 +12,9 @@ class ItemForm extends Component {
     adress:"",
     location:"",
     description:"",
-    contact: ""
+    contact: "",
+    userPhone: "",
+    userEmail: "",
   };
 
   handleChange = (e) => {
@@ -23,6 +25,17 @@ class ItemForm extends Component {
     this.setState({
         [key]: value
     });
+  }
+  componentDidMount() {
+    apiHandler
+      .getUserInfo("/api/users")
+      .then((apiRes) => this.setState({
+        userEmail: apiRes.email,
+        userPhone: apiRes.phoneNumber
+      }))
+      .catch((apiErr) => console.log(apiErr))
+    
+    
   }
 
   handleSubmit = (event) => {
@@ -128,10 +141,10 @@ class ItemForm extends Component {
               How do you want to be reached?
             </label>
             <div>
-              <input type="radio" name="contact" value="userEmailContext"/> 
+              <input type="radio" name="contact" value={this.state.userEmail}/> 
               user email
             </div>
-            <input type="radio" name="contact" value="userPhoneContext"/>
+            <input type="radio" name="contact" value={this.state.userPhone}/>
             contact phone number
           </div>
 
