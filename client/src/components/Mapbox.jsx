@@ -1,5 +1,6 @@
 import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
 import React, { Component } from "react";
+import AllItems from "./AllItems";
 
 
 const Map = ReactMapboxGl({
@@ -19,6 +20,7 @@ export default class Mapbox extends Component {
       >
         <Layer type="symbol" id="marker" layout={{ "icon-image": "marker-15" }}>
           <Feature coordinates={[-0.481747846041145, 51.3233379650232]} />
+          <AllItems />
         </Layer>
       </Map>
     );
