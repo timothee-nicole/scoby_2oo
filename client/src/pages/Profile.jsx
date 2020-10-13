@@ -10,6 +10,27 @@ class Profile extends Component {
     phoneNumber: "",
   };
 
+  componentDidMount = () => {
+    
+    apiHandler
+      .getItems("/api/items")
+      .then((apiRes) => {
+        const newArr = apiRes.filter(
+          (obj) => {
+            // (obj.id_user = this.props.authContext.user._id)
+          console.log(obj)
+          console.log(this.props.authContext.user._id)
+        }
+        );
+        console.log(newArr, "component did mount");
+      })
+      .catch((apiErr) => {
+        {
+          console.log(apiErr);
+        }
+      });
+  };
+
   handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -18,10 +39,6 @@ class Profile extends Component {
       [name]: value,
     });
   };
-
-  componentDidUpdate() {
-    console.log("lets do this dawg");
-  }
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -42,10 +59,9 @@ class Profile extends Component {
   render() {
     const { authContext } = this.props;
     const { user } = authContext;
-console.log("this is the user:", user)
+    console.log("this is the user:", user);
 
     return (
-      
       <div style={{ padding: "100px", fontSize: "1.25rem" }}>
         {/* <h2 style={{ fontSize: "1.5rem", marginBottom: "10px" }}>
           This is profile, it's protected !
@@ -75,7 +91,7 @@ console.log("this is the user:", user)
               Edit profile
             </Link>
           </div>
-          {console.log("user",user)}
+          {console.log("user", user)}
           {console.log(user.phoneNumber)}
           {user.phoneNumber ? (
             <div className="user-contact">
@@ -104,7 +120,7 @@ console.log("this is the user:", user)
             </div>
           )}
 
-          {/* Break whatever is belo  */}
+          {/* Break whatever is below  */}
           <div className="CardItem">
             <div className="item-empty">
               <div className="round-image">

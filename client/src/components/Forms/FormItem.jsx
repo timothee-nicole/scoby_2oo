@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import LocationAutoComplete from "../LocationAutoComplete";
+import { withUser } from "../../components/Auth/withUser";
 import "../../styles/form.css";
 import apiHandler from "../../api/apiHandler.js"
+
 
 class ItemForm extends Component {
   state = {
@@ -9,7 +11,7 @@ class ItemForm extends Component {
     category: "",
     quantity: 0,
     image:"",
-    adress:"",
+    address:"",
     location: {
       type: "",
       coordinates: 0,
@@ -77,7 +79,10 @@ class ItemForm extends Component {
   };
 
   render() {
-    // console.log(this.state)
+    const { authContext } = this.props;
+    const { user } = authContext;
+
+    console.log('toto', user)
     return (
       <div className="ItemForm-container">
         <form className="form" onChange={this.handleChange} onSubmit={this.handleSubmit}>
@@ -173,4 +178,4 @@ class ItemForm extends Component {
   }
 }
 
-export default ItemForm;
+export default withUser(ItemForm);

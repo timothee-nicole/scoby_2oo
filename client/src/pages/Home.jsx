@@ -1,5 +1,4 @@
 import React from "react";
-import AllItems from "../components/AllItems.jsx";
 import Mapbox from "../components/Mapbox.jsx";
 
 const Home = (props) => {

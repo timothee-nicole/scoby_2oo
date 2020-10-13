@@ -1,8 +1,8 @@
-import ReactMapboxGl, { Marker, Layer, Image } from "react-mapbox-gl";
+import { Marker, Layer } from "react-mapbox-gl";
 import React, { Component } from "react";
 import apiHandler from "../api/apiHandler.js";
 
-import { Map } from "mapbox-gl";
+
 class AllItems extends Component {
 
       state = {
@@ -52,7 +52,7 @@ class AllItems extends Component {
             <>
                {this.state.itemsLocation[0] && 
                   this.state.itemsLocation.map((obj) => (
-                    console.log(obj),
+                    
                   <React.Fragment key={obj.name}>
                   <Layer type="symbol" layout={{ "icon-image": "marker-15" }}>
                       <Marker
