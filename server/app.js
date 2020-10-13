@@ -47,7 +47,7 @@ const itemsRouter = require("./routes/items");
 
 app.use("/", indexRouter);
 app.use("/api/auth", authRouter);
-app.use("/api/users", usersRouter);
+app.use(usersRouter);
 app.use("/api/items", itemsRouter);
 
 module.exports = app;
