@@ -12,16 +12,17 @@ export default class Mapbox extends Component {
   render() {
     return (
       <Map
-        style="mapbox://styles/mapbox/streets-v9"
+        style="mapbox://styles/mapbox/streets-v6"
         containerStyle={{
           height: "100vh",
           width: "100vw",
         }}
+        center={[2.3522, 48.8566]}
       >
         <Layer type="symbol" id="marker" layout={{ "icon-image": "marker-15" }}>
-          <Feature coordinates={[-0.481747846041145, 51.3233379650232]} />
-          <AllItems />
+          <Feature coordinates={[48.8566, 2.3522]} />
         </Layer>
+          <AllItems />
       </Map>
     );
   }

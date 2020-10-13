@@ -80,7 +80,7 @@ class LocationAutoComplete extends Component {
             <li
               key={place.id}
               className="LocationAutoComplete-items"
-              onClick={this.handleItemClicked(place)}
+              onClick={() => this.handleItemClicked(place)}
             >
               {place.place_name}
             </li>

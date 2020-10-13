@@ -1,4 +1,4 @@
-import ReactMapboxGl, { Marker } from "react-mapbox-gl";
+import ReactMapboxGl, { Marker, Layer, Image } from "react-mapbox-gl";
 import React, { Component } from "react";
 import apiHandler from "../api/apiHandler.js";
 
@@ -6,13 +6,7 @@ import { Map } from "mapbox-gl";
 class AllItems extends Component {
 
       state = {
-        viewport: {
-           width: "100vw",
-           height: "100vh",
-           latitude: 42.430472,
-           longitude: -123.334102,
-           zoom: 16
-         },
+ 
         itemsLocation: [],
         // ItemsLatLong: [],
       };
@@ -52,17 +46,21 @@ class AllItems extends Component {
 
     render() {
       // this.setItemsLocation
-      console.log(this.state.itemsLocation[0] && this.state.itemsLocation[3])
+      console.log(this.state.itemsLocation[0] && this.state.itemsLocation)
     
         return (
             <>
                {this.state.itemsLocation[0] && 
                   this.state.itemsLocation.map((obj) => (
+                    console.log(obj),
                   <React.Fragment key={obj.name}>
+                  <Layer type="symbol" layout={{ "icon-image": "marker-15" }}>
                       <Marker
-                      latitude={obj.location.coordinates[0]}
-                      longitude={obj.location.coordinates[1]}
-                      >{obj.name}</Marker>
+                      coordinates={obj.location.coordinates}
+                      anchor="bottom">
+                     <img src='https://i.ytimg.com/vi/Q6amwKTI9VY/maxresdefault.jpg' />
+                      </Marker>
+                  </Layer>
                     </React.Fragment>
                   
                   ))
